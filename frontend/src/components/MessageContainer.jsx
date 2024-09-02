@@ -102,7 +102,7 @@ const MessageContainer = () => {
       try {
         if (selectedConversation.mock) return;
         const res = await fetch(
-          `http://localhost:5000/api/messages/${selectedConversation.userId}`,
+          `https://thread-clone-dbyf.onrender.com/api/messages/${selectedConversation.userId}`,
           {
             credentials: "include",
           }

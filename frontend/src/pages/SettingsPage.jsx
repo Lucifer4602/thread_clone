@@ -11,11 +11,14 @@ export const SettingsPage = () => {
       return;
 
     try {
-      const res = await fetch("http://localhost:5000/api/users/freeze", {
-        method: "PUT",
-        credentials: "include",
-        headers: { "Content-Type": "application/json" },
-      });
+      const res = await fetch(
+        "https://thread-clone-dbyf.onrender.com/api/users/freeze",
+        {
+          method: "PUT",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+        }
+      );
       const data = await res.json();
 
       if (data.error) {

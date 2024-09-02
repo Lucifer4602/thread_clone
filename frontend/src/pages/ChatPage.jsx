@@ -58,7 +58,7 @@ const ChatPage = () => {
     const getConversations = async () => {
       try {
         const res = await fetch(
-          "http://localhost:5000/api/messages/conversations",
+          "https://thread-clone-dbyf.onrender.com/api/messages/conversations",
           {
             credentials: "include",
           }
@@ -85,7 +85,7 @@ const ChatPage = () => {
     setSearchingUser(true);
     try {
       const res = await fetch(
-        `http://localhost:5000/api/users/profile/${searchText}`
+        `https://thread-clone-dbyf.onrender.com/api/users/profile/${searchText}`
       );
       const searchedUser = await res.json();
       if (searchedUser.error) {

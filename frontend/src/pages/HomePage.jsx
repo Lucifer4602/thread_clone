@@ -16,10 +16,13 @@ const HomePage = () => {
       setLoading(true);
       setPosts([]);
       try {
-        const res = await fetch("http://localhost:5000/api/posts/feed", {
-          method: "GET",
-          credentials: "include", // Include credentials (JWT token) in the request
-        });
+        const res = await fetch(
+          "https://thread-clone-dbyf.onrender.com/api/posts/feed",
+          {
+            method: "GET",
+            credentials: "include", // Include credentials (JWT token) in the request
+          }
+        );
         const data = await res.json();
         if (data.error) {
           showToast("Error", data.error, "error");

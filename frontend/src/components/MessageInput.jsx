@@ -42,18 +42,21 @@ const MessageInput = ({ setMessages }) => {
     setIsSending(true);
 
     try {
-      const res = await fetch("http://localhost:5000/api/messages", {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          message: messageText,
-          recipientId: selectedConversation.userId,
-          img: imgUrl,
-        }),
-      });
+      const res = await fetch(
+        "https://thread-clone-dbyf.onrender.com/api/messages",
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            message: messageText,
+            recipientId: selectedConversation.userId,
+            img: imgUrl,
+          }),
+        }
+      );
       const data = await res.json();
       if (data.error) {
         showToast("Error", data.error, "error");

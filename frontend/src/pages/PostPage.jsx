@@ -34,10 +34,13 @@ const PostPage = () => {
     const getPost = async () => {
       setPosts([]);
       try {
-        const res = await fetch(`http://localhost:5000/api/posts/${pid}`, {
-          method: "GET",
-          credentials: "include", // Include credentials (JWT token) in the request
-        });
+        const res = await fetch(
+          `https://thread-clone-dbyf.onrender.com/api/posts/${pid}`,
+          {
+            method: "GET",
+            credentials: "include", // Include credentials (JWT token) in the request
+          }
+        );
         const data = await res.json();
         if (data.error) {
           showToast("Error", data.error, "error");
@@ -56,7 +59,7 @@ const PostPage = () => {
       if (!window.confirm("Are you sure you want to delete this post?")) return;
 
       const res = await fetch(
-        `http://localhost:5000/api/posts/${currentPost._id}`,
+        `https://thread-clone-dbyf.onrender.com/api/posts/${currentPost._id}`,
         {
           method: "DELETE",
           credentials: "include", // Include credentials (JWT token) in the request

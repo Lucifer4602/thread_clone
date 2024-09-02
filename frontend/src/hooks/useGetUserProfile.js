@@ -12,7 +12,7 @@ const useGetUserProfile = () => {
     const getUser = async () => {
       try {
         const res = await fetch(
-          `http://localhost:5000/api/users/profile/${username}`
+          `https://thread-clone-dbyf.onrender.com/api/users/profile/${username}`
         );
         const data = await res.json();
         if (data.error) {

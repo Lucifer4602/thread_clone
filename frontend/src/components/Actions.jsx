@@ -42,7 +42,7 @@ const Actions = ({ post }) => {
     setIsLiking(true);
     try {
       const res = await fetch(
-        "http://localhost:5000/api/posts/like/" + post._id,
+        "https://thread-clone-dbyf.onrender.com/api/posts/like/" + post._id,
         {
           method: "PUT",
           credentials: "include",
@@ -93,7 +93,7 @@ const Actions = ({ post }) => {
     setIsReplying(true);
     try {
       const res = await fetch(
-        "http://localhost:5000/api/posts/reply/" + post._id,
+        "https://thread-clone-dbyf.onrender.com/api/posts/reply/" + post._id,
         {
           method: "PUT",
           credentials: "include",

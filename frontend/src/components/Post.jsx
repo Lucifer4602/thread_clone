@@ -22,7 +22,7 @@ const Post = ({ post, postedBy }) => {
     const getUser = async () => {
       try {
         const res = await fetch(
-          "http://localhost:5000/api/users/profile/" + postedBy
+          "https://thread-clone-dbyf.onrender.com/api/users/profile/" + postedBy
         );
         const data = await res.json();
         if (data.error) {
@@ -44,10 +44,13 @@ const Post = ({ post, postedBy }) => {
       e.preventDefault();
       if (!window.confirm("Are you sure you want to delete this post?")) return;
 
-      const res = await fetch(`http://localhost:5000/api/posts/${post._id}`, {
-        method: "DELETE",
-        credentials: "include",
-      });
+      const res = await fetch(
+        `https://thread-clone-dbyf.onrender.com/api/posts/${post._id}`,
+        {
+          method: "DELETE",
+          credentials: "include",
+        }
+      );
       const data = await res.json();
       if (data.error) {
         showToast("Error", data.error, "error");

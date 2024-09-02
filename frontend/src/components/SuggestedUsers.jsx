@@ -12,7 +12,7 @@
 //     const getSuggestedUsers = async () => {
 //       setLoading(true);
 //       try {
-//         const res = await fetch("http://localhost:5000/api/users/suggested");
+//         const res = await fetch("https://thread-clone-dbyf.onrender.com/api/users/suggested");
 //         const data = await res.json();
 //         if (data.error) {
 //           showToast("Error", data.error, "error");
@@ -102,10 +102,13 @@ const SuggestedUsers = () => {
     const getSuggestedUsers = async () => {
       setLoading(true);
       try {
-        const res = await fetch("http://localhost:5000/api/users/suggested", {
-          method: "GET",
-          credentials: "include", // Include cookies in the request
-        });
+        const res = await fetch(
+          "https://thread-clone-dbyf.onrender.com/api/users/suggested",
+          {
+            method: "GET",
+            credentials: "include", // Include cookies in the request
+          }
+        );
         const data = await res.json();
         if (data.error) {
           showToast("Error", data.error, "error");

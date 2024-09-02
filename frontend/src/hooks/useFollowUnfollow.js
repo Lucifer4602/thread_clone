@@ -21,7 +21,7 @@ const useFollowUnfollow = (user) => {
     setUpdating(true);
     try {
       const res = await fetch(
-        `http://localhost:5000/api/users/follow/${user._id}`,
+        `https://thread-clone-dbyf.onrender.com/api/users/follow/${user._id}`,
         {
           method: "POST",
           credentials: "include",

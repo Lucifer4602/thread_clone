@@ -36,14 +36,17 @@ export default function SignupCard() {
 
   const handleSignup = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/users/signup", {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(inputs),
-      });
+      const res = await fetch(
+        "https://thread-clone-dbyf.onrender.com/api/users/signup",
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(inputs),
+        }
+      );
       const data = await res.json();
 
       if (data.error) {
