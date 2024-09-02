@@ -102,11 +102,15 @@ const SuggestedUsers = () => {
     const getSuggestedUsers = async () => {
       setLoading(true);
       try {
+        const token = localStorage.getItem("authToken"); // or however you store your token
         const res = await fetch(
           "https://thread-clone-dbyf.onrender.com/api/users/suggested",
           {
             method: "GET",
-            credentials: "include", // Include cookies in the request
+            headers: {
+              Authorization: `Bearer ${token}`, // Include the token in the headers
+            },
+            credentials: "include", // Include cookies if required
           }
         );
 
