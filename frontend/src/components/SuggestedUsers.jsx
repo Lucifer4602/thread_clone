@@ -109,11 +109,18 @@ const SuggestedUsers = () => {
             credentials: "include", // Include cookies in the request
           }
         );
+
+        if (!res.ok) {
+          throw new Error(`HTTP error! Status: ${res.status}`);
+        }
+
         const data = await res.json();
+
         if (data.error) {
           showToast("Error", data.error, "error");
           return;
         }
+
         setSuggestedUsers(data);
       } catch (error) {
         showToast("Error", error.message, "error");
@@ -131,11 +138,15 @@ const SuggestedUsers = () => {
         Suggested Users
       </Text>
       <Flex direction={"column"} gap={4}>
-        {!loading &&
-          suggestedUsers.map((user) => (
-            <SuggestedUser key={user._id} user={user} />
-          ))}
-        {loading &&
+        {!loading ? (
+          suggestedUsers.length > 0 ? (
+            suggestedUsers.map((user) => (
+              <SuggestedUser key={user._id} user={user} />
+            ))
+          ) : (
+            <Text>No suggested users available.</Text>
+          )
+        ) : (
           [0, 1, 2, 3, 4].map((_, idx) => (
             <Flex
               key={idx}
@@ -158,7 +169,8 @@ const SuggestedUsers = () => {
                 <Skeleton h={"20px"} w={"60px"} />
               </Flex>
             </Flex>
-          ))}
+          ))
+        )}
       </Flex>
     </>
   );

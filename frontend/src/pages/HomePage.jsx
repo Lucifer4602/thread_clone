@@ -14,7 +14,7 @@ const HomePage = () => {
   useEffect(() => {
     const getFeedPosts = async () => {
       setLoading(true);
-      setPosts([]);
+      setPosts([]); // Clear previous posts
       try {
         const res = await fetch(
           "https://thread-clone-dbyf.onrender.com/api/posts/feed",
@@ -23,12 +23,17 @@ const HomePage = () => {
             credentials: "include", // Include credentials (JWT token) in the request
           }
         );
+
+        if (!res.ok) {
+          throw new Error(`HTTP error! Status: ${res.status}`);
+        }
+
         const data = await res.json();
         if (data.error) {
           showToast("Error", data.error, "error");
           return;
         }
-        console.log(data);
+
         setPosts(data);
       } catch (error) {
         showToast("Error", error.message, "error");
@@ -36,25 +41,24 @@ const HomePage = () => {
         setLoading(false);
       }
     };
+
     getFeedPosts();
   }, [showToast, setPosts]);
 
   return (
     <Flex gap="10" alignItems={"flex-start"}>
       <Box flex={70}>
-        {!loading && posts.length === 0 && (
-          <h1>Follow some users to see the feed</h1>
-        )}
-
-        {loading && (
-          <Flex justify="center">
+        {loading ? (
+          <Flex justify="center" align="center" h="100vh">
             <Spinner size="xl" />
           </Flex>
+        ) : posts.length === 0 ? (
+          <h1>Follow some users to see the feed</h1>
+        ) : (
+          posts.map((post) => (
+            <Post key={post._id} post={post} postedBy={post.postedBy} />
+          ))
         )}
-
-        {posts.map((post) => (
-          <Post key={post._id} post={post} postedBy={post.postedBy} />
-        ))}
       </Box>
       <Box
         flex={30}
